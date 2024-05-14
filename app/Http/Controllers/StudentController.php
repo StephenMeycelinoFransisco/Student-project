@@ -14,14 +14,14 @@ use App\Http\Resources\ClassesResource;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request) 
     {
         $studentQuery = Student::query();
 
         $studentQuery = $this->applySearch($studentQuery, request('search'));
 
         return inertia('Student/Index', [
-            'students' => StudentResource::collection($studentQuery->paginate(5)),
+            'students' => StudentResource::collection($studentQuery->paginate(10)),
             'search' => request('search') ?? ''
         ]);
     }

@@ -2,7 +2,8 @@
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
 import Pagination from "@/Components/Pagination.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Link, Head, useForm } from "@inertiajs/vue3";
+import { Link, Head, useForm, router, usePage } from "@inertiajs/vue3";
+import { computed, ref, watch } from "vue";
 
 defineProps({
     students: {
@@ -10,35 +11,35 @@ defineProps({
     },
 });
 
-// let pageNumber = ref(1),
-//     searchTerm = ref(usePage().props.search ?? "");
+let pageNumber = ref(1),
+    searchTerm = ref(usePage().props.search ?? "");
 
-// const pageNumberUpdated = (link) => {
-//     pageNumber.value = link.url.split("=")[1];
-// };
+const pageNumberUpdated = (link) => {
+    pageNumber.value = link.url.split("=")[1];
+};
 
-// let studentsUrl = computed(() => {
-//     const url = new URL(route("students.index"));
+let studentsUrl = computed(() => {
+    const url = new URL(route("students.index"));
 
-//     url.searchParams.set("page", pageNumber.value);
+    url.searchParams.set("page", pageNumber.value);
 
-//     if (searchTerm.value) {
-//         url.searchParams.set("search", searchTerm.value);
-//     }
+    if (searchTerm.value) {
+        url.searchParams.set("search", searchTerm.value);
+    }
 
-//     return url;
-// });
+    return url;
+});
 
-// watch(
-//     () => studentsUrl.value,
-//     (newValue) => {
-//         router.visit(newValue, {
-//             replace: true,
-//             preserveState: true,
-//             preserveScroll: true,
-//         });
-//     }
-// );
+watch(
+    () => studentsUrl.value,
+    (newValue) => {
+        router.visit(newValue, {
+            replace: true,
+            preserveState: true,
+            preserveScroll: true,
+        });
+    }
+);
 
 const deleteForm = useForm({});
 
