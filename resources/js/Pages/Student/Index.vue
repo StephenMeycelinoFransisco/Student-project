@@ -2,7 +2,7 @@
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
 import Pagination from "@/Components/Pagination.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Link, Head } from "@inertiajs/vue3";
+import { Link, Head, useForm } from "@inertiajs/vue3";
 
 defineProps({
     students: {
@@ -40,15 +40,16 @@ defineProps({
 //     }
 // );
 
-// const deleteForm = useForm({});
+const deleteForm = useForm({});
 
-// const deleteStudent = (id) => {
-//     if (confirm("Are you sure you want to delete this student?")) {
-//         deleteForm.delete(route("students.destroy", id), {
-//             preserveScroll: true,
-//         });
-//     }
-// };
+const deleteStudent = (id) => {
+    if (confirm("Are you sure you want to delete this student?")) {
+        deleteForm.delete(route("students.destroy", id), {
+            preserveScroll: true,
+        });
+    }
+};
+
 </script>
 
 <template>
