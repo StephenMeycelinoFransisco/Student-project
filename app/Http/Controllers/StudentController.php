@@ -49,12 +49,22 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    // public function update(UpdateStudentRequest $request, Student $student)
-    // {
-    //     $student->update($request->validated());
+    public function edit(Student $student)
+    {
+        $classes = ClassesResource::collection(Classes::all());
 
-    //     return redirect()->route('students.index');
-    // }
+        return inertia('Student/Edit', [
+            'student' => StudentResource::make($student),
+            'classes' => $classes
+        ]);
+    }
+
+    public function update(UpdateStudentRequest $request, Student $student)
+    {
+        $student->update($request->validated());
+
+        return redirect()->route('students.index');
+    }
 
     // public function destroy(Student $student)
     // {

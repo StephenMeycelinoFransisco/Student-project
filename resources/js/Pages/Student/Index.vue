@@ -2,7 +2,7 @@
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
 import Pagination from "@/Components/Pagination.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link, Head } from "@inertiajs/vue3";
 
 defineProps({
     students: {
@@ -194,7 +194,7 @@ defineProps({
                                                     class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
                                                 >
                                                     {{
-                                                        student.created_at_formatted
+                                                        student.created_at
                                                     }}
                                                 </td>
 
