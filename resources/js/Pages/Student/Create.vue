@@ -20,6 +20,7 @@ const form = useForm({
     section_id: "",
 });
 
+
 watch(
     () => form.class_id,
     (newValue) => {
@@ -27,11 +28,13 @@ watch(
     }
 );
 
-const getSections = (class_id) => {
-    axios.get("/api/sections?class_id=" + class_id).then((response) => {
-        sections.value = response.data;
+const getSections = (classId) => {
+    axios.get("/api/sections?class_id=" + classId).then((response) => {
+			console.log(response.data);
+			sections.value = response.data;
     });
 };
+
 
 const submit = () => {
     form.post(route("students.store"), {
