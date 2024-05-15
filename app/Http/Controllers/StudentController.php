@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\ClassesResource;
+use Laracasts\Flash\Flash;
 
 class StudentController extends Controller
 {
@@ -45,7 +46,7 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         Student::create($request->validated());
-
+        Flash::success('Student created successfully!');
         return redirect()->route('students.index');
     }
 
@@ -62,7 +63,7 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest $request, Student $student)
     {
         $student->update($request->validated());
-
+        Flash::success('Student created successfully!');
         return redirect()->route('students.index');
     }
 
